@@ -10,7 +10,7 @@ export const signupUser = async (req, res) => {
     const user = await User.findOne({ username });
 
     if (user) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ error: "User already exists" });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -33,20 +33,20 @@ export const signupUser = async (req, res) => {
       await newUser.save();
 
       res.status(201).json({
-        _id: newUser._id,
-        name: newUser.name,
-        username: newUser.username,
-        gender: newUser.gender,
-        profilePicture: newUser.profilePicture,
+        user: {
+          _id: newUser._id,
+          name: newUser.name,
+          username: newUser.username,
+          profilePicture: newUser.profilePicture,
+        },
         message: "User created successfully",
       });
     } else {
-      res.status(400).json({ message: "Invalid user data" });
+      res.status(400).json({ error: "Invalid user data" });
     }
   } catch (error) {
     res.status(500).json({
-      message: "Something went wrong. Please try again.",
-      error: error.message,
+      error: "Something went wrong. Please try again.",
     });
   }
 };
@@ -60,21 +60,23 @@ export const loginUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user?.password || "");
 
     if (!user || !isMatch) {
-      return res.status(400).json({ message: "Invalid username or password" });
+      return res.status(400).json({ error: "Invalid username or password" });
     }
 
     generateToken(user._id, res);
 
     res.status(200).json({
-      _id: user._id,
-      name: user.name,
-      username: user.username,
-      profilePicture: user.profilePicture,
+      user: {
+        _id: user._id,
+        name: user.name,
+        username: user.username,
+        profilePicture: user.profilePicture,
+      },
+      message: "User logged in successfully",
     });
   } catch (error) {
     res.status(500).json({
-      message: "Something went wrong. Please try again.",
-      error: error.message,
+      error: "Something went wrong. Please try again.",
     });
   }
 };
@@ -86,8 +88,7 @@ export const logoutUser = (req, res) => {
     res.status(200).json({ message: "User logged out successfully" });
   } catch (error) {
     res.status(500).json({
-      message: "Something went wrong. Please try again.",
-      error: error.message,
+      error: "Something went wrong. Please try again.",
     });
   }
 };

@@ -18,7 +18,7 @@ export const getMessages = async (req, res) => {
     res.status(200).json(messages);
   } catch (error) {
     console.log(error);
-    res.status(404).json({ message: "Internal Server Error." });
+    res.status(404).json({ error: "Internal Server Error." });
   }
 };
 
@@ -51,7 +51,7 @@ export const sendMessage = async (req, res) => {
     await Promise.all([newMessage.save(), conversation.save()]);
   }
 
-  res.status(201).json({ message: "Message sent", newMessage });
+  res.status(201).json({ error: "Message sent", newMessage });
 };
 
 // Edit a message
@@ -69,7 +69,7 @@ export const editMessage = async (req, res) => {
     res.status(200).json({ message: "Message edited", editedMessage });
   } catch (error) {
     console.log(error);
-    res.status(404).json({ message: "Internal Server Error." });
+    res.status(404).json({ error: "Internal Server Error." });
   }
 };
 
@@ -82,6 +82,6 @@ export const deleteMessage = async (req, res) => {
     res.status(200).json({ message: "Message deleted" });
   } catch (error) {
     console.log(error);
-    res.status(404).json({ message: "Internal Server Error." });
+    res.status(404).json({ error: "Internal Server Error." });
   }
 };
