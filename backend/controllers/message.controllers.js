@@ -1,5 +1,6 @@
 import Message from "../models/message.model.js";
 import Conversation from "../models/conversation.model.js";
+import { getRecieverSocketId, io } from "../socket/socket.js";
 
 // Get all messages
 export const getMessages = async (req, res) => {
@@ -49,6 +50,13 @@ export const sendMessage = async (req, res) => {
   if (newMessage) {
     conversation.messages.push(newMessage._id);
     await Promise.all([newMessage.save(), conversation.save()]);
+  }
+
+  const recieverSocketId = getRecieverSocketId(receiverId);
+
+  // send the message to the reciever if they are online
+  if (recieverSocketId) {
+    io.to(recieverSocketId).emit("newMessage", newMessage);
   }
 
   res.status(201).json(newMessage);

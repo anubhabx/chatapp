@@ -4,6 +4,7 @@ import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 import NoChatSelected from "./NoChatSelected";
 import useConversation from "../../zustand/useConversation";
+import toast from "react-hot-toast";
 
 const MessageContainer = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
