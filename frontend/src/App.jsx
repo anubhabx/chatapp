@@ -28,13 +28,14 @@ function App() {
         </Routes>
       </div>
       <Toaster
-        position="bottom-center"
+        position="top-center"
         toastOptions={{
           style: {
             background: "#333",
             color: "#fff",
             fontSize: ".9rem",
           },
+          duration: 1500,
         }}
       />
     </>

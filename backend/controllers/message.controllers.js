@@ -51,7 +51,7 @@ export const sendMessage = async (req, res) => {
     await Promise.all([newMessage.save(), conversation.save()]);
   }
 
-  res.status(201).json({ error: "Message sent", newMessage });
+  res.status(201).json(newMessage);
 };
 
 // Edit a message
@@ -66,7 +66,7 @@ export const editMessage = async (req, res) => {
       { new: true }
     );
 
-    res.status(200).json({ message: "Message edited", editedMessage });
+    res.status(200).json({ editedMessage });
   } catch (error) {
     console.log(error);
     res.status(404).json({ error: "Internal Server Error." });

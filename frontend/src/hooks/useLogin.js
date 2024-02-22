@@ -7,6 +7,9 @@ const useLogin = () => {
   const { setAuthUser } = useAuthContext();
 
   const login = async (username, password) => {
+    const success = handleInputErrors({ username, password });
+    if (!success) return;
+
     try {
       setLoading(true);
 
@@ -40,3 +43,17 @@ const useLogin = () => {
 };
 
 export default useLogin;
+
+const handleInputErrors = ({ username, password }) => {
+  if (!username || !password) {
+    toast.error("All fields are required");
+    return false;
+  }
+
+  if (password.length < 6) {
+    toast.error("Password must be at least 6 characters long");
+    return false;
+  }
+
+  return true;
+};

@@ -1,19 +1,29 @@
-import React from "react";
+import React, { isValidElement } from "react";
+import useConversation from "../../zustand/useConversation";
 
-const Conversation = () => {
+const Conversation = ({ conversation, emoji }) => {
+  const { selectedConversation, setSelectedConversation } = useConversation();
+
+  const isSelected = selectedConversation?._id === conversation._id;
+
+  // console.log(isSelected, selectedConversation?._id, conversation._id);
+
   return (
     <>
-      <div className="flex gap-3 py-2 items-center transition-colors duration-150 ease-in-out hover:bg-blue-200 rounded p-2 cursor-pointer">
+      <div
+        className={`flex gap-3 py-2 items-center transition-colors duration-150 ease-in-out hover:bg-blue-300 rounded p-2 cursor-pointer ${isSelected ? "bg-blue-300" : ""}`}
+        onClick={() => setSelectedConversation(conversation)}
+      >
         <div className="avatar online">
           <div className="rounded-full w-12">
-            <img src="https://avatar.iran.liara.run/public" alt="User Avatar" />
+            <img src={conversation.profilePicture} alt="User Avatar" />
           </div>
         </div>
 
         <div className="flex flex-col flex-1">
           <div className="flex justify-between items-center">
-              <p className="font-bold text-white">John Doe</p>
-              <span>💕</span>
+            <p className="font-bold text-white">{conversation.name}</p>
+            <span>{emoji}</span>
           </div>
         </div>
 
