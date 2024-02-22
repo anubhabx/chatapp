@@ -9,7 +9,7 @@ const useGetConversations = () => {
       try {
         setLoading(true);
 
-        const res = await fetch("http://localhost:5000/api/users", {
+        const res = await fetch("/api/users", {
           credentials: "include",
         });
 
