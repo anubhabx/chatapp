@@ -6,7 +6,7 @@ const LogoutButton = () => {
   const { loading, logout } = useLogout();
 
   return (
-    <div className="w-full mt-auto">
+    <div className="w-full mt-auto flex items-center">
       {loading ? (
         <span className="loading loading-spinner"></span>
       ) : (

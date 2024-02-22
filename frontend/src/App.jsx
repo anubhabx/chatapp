@@ -4,6 +4,7 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
+import Background from "./components/background/Background";
 
 function App() {
   const { authUser } = useAuthContext();
@@ -11,6 +12,7 @@ function App() {
 
   return (
     <>
+      <Background />
       <div className="p-4 flex h-screen items-center justify-center text-white">
         <Routes>
           <Route

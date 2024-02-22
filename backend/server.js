@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import * as dotenv from "dotenv";
 import authRoutes from "./routes/auth.routes.js";
@@ -10,6 +11,8 @@ import { app, io, server } from "./socket/socket.js";
 
 const PORT = process.env.PORT || 3000;
 
+const __dirname = path.resolve();
+
 dotenv.config();
 
 app.use(express.json()); // for parsing application/json
@@ -19,6 +22,12 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true })); // for se
 app.use("/api/auth", authRoutes); // use authRoutes for /api/auth
 app.use("/api/messages", messageRoutes); // use userRoutes for /api/message
 app.use("/api/users", userRoutes); // use userRoutes for /api/users
+
+app.use(express.static(path.join(__dirname, "/frontend/dist"))); // for serving the frontend
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 // Start the server and connect to the Database
 server.listen(PORT, () => {
