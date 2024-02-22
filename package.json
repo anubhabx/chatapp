@@ -1,11 +1,10 @@
 {
   "name": "chatapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "Chat application using MERN stack",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon backend/server.js",
     "start": "node backend/server.js",
     "build": "npm install && cd frontend && npm install && npm run build && cd .."
