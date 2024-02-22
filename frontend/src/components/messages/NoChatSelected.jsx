@@ -1,6 +1,6 @@
 import React from "react";
 import { BiMessageSquareDetail  } from "react-icons/bi";
-import { useAuthContext } from "../../context/AuthContext";
+import { useAuthContext } from "../../context/authContext";
 
 const NoChatSelected = () => {
   const { authUser } = useAuthContext();
