@@ -18,7 +18,7 @@ const generateToken = (userId, res) => {
     maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
     httpOnly: true, // cookie cannot be accessed by client side script
     sameSite: "strict", // cookie is sent only to the same site as the one that originated it
-    secure: process.env.NODE_ENV === "production" ? true : false, // cookie will only be sent over https
+    secure: process.env.NODE_ENV != "development", // cookie will only be sent over https
   });
 };
 
