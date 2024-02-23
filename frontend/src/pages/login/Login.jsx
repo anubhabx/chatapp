@@ -33,6 +33,7 @@ const Login = () => {
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
+              data-theme="dark"
             />
           </div>
           <div className="mb-3">
@@ -48,6 +49,7 @@ const Login = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
+              data-theme="dark"
             />
           </div>
 

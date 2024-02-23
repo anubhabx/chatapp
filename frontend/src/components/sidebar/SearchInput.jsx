@@ -38,6 +38,7 @@ const SearchInput = () => {
         className="input input-bordered w-full h-10"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        data-theme="dark"
       />
       <button type="submit" className="btn btn-circle btn-primary">
         <FaSearch color="white" />

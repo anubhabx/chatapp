@@ -57,6 +57,7 @@ const SignUp = () => {
                   name: e.target.value,
                 });
               }}
+              data-theme="dark"
             />
           </div>
           <div className="mb-3">
@@ -75,6 +76,7 @@ const SignUp = () => {
                   username: e.target.value,
                 });
               }}
+              data-theme="dark"
             />
           </div>
           <div className="mb-3">
@@ -93,6 +95,7 @@ const SignUp = () => {
                   password: e.target.value,
                 });
               }}
+              data-theme="dark"
             />
           </div>
           <div className="mb-3">
@@ -113,6 +116,7 @@ const SignUp = () => {
                   confirmPassword: e.target.value,
                 });
               }}
+              data-theme="dark"
             />
           </div>
 

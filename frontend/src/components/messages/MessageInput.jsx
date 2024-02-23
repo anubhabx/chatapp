@@ -25,6 +25,7 @@ const MessageInput = () => {
           className="form-input flex-1 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          data-theme="dark"
         />
         <button
           type="submit"
